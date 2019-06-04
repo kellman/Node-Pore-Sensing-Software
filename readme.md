@@ -1,8 +1,6 @@
 # NPS-matched-filter-analysis
 Copyright 2019 Kristen Cotner, Alan Dong
 
-[useful markdown editor](https://jbt.github.io/markdown-editor/)
-
 #### forked from the respository created by Michael Kellman:
 [Node-Pore-Sensing-Software](https://github.com/kellman/Node-Pore-Sensing-Software) \
 [datasets](https://doi.org/10.5281/zenodo.860191) \
