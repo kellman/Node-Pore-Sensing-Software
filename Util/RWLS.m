@@ -32,15 +32,18 @@ function [x,enorm1,enorm2,xi] = RWLS(A,y,epsilon,maxIter,rwElemLen)
 %   Detailed explanation goes here
 
     % init weights
-    W = eye(length(y));
+%     W = eye(length(y));
+    W = ones(length(y),1); % no need for matrix
     for ii = 1:maxIter
         disp(['IRLS Iteration: ' num2str(ii)]);
         
         % fit
-        x = (W.^(1/2)*A)\(W.^(1/2)*y);
-        for jj = 1:rwElemLen
-            W(jj,jj) = 1/(abs(A(jj,:)*x-y(jj))+ epsilon);
-        end
+%         x = (W.^(1/2)*A)\(W.^(1/2)*y);
+        x = bsxfun(@times, sqrt(W), A) \ (sqrt(W).*y); % faster than line above
+%         for jj = 1:rwElemLen
+%             W(jj,jj) = 1/(abs(A(jj,:)*x-y(jj)) + epsilon);
+%         end
+        W(1:rwElemLen) = 1 ./ (abs(A(1:rwElemLen,:) .* x - y(1:rwElemLen)) + epsilon .* ones(rwElemLen, 1)); % no need for loop
         
         % error
         enorm1(ii) = norm(A*x - y,2);
