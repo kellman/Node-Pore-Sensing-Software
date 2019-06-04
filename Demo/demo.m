@@ -1,3 +1,6 @@
+% coded-NPS-software 
+% copyright 2019 Kristen Cotner, Alan Dong
+
 % Copyright 2017 Michael Kellman, Michael Lustig
 % 
 % Redistribution and use in source and binary forms, with or without
@@ -175,7 +178,11 @@ for gg = 1:maxSICIter
     cval = cval(si);
     ss = length(si); % initialize from highest correlation detection
     while(ss > 0)
-        currentDetection = struct('pos',candidateList(si(ss)).time,'ttindex',candidateList(si(ss)).tti,'pol',candidateList(si(ss)).pol,'amp',[],'correng',cval(ss),'pslr',y(ss),'blamp',[],'spfilt',[],'estBaud',[],'ttest',[],'index',ii,'sig',[]);
+        currentDetection = struct('pos',candidateList(si(ss)).time,'ttindex',candidateList(si(ss)).tti, ...
+            'pol',candidateList(si(ss)).pol,'amp',[],'correng',cval(ss),'pslr',y(ss),'blamp',[], ...
+            'spfilt',[],'estBaud',[],'ttest',[],'index',NaN,'sig',[]);
+            % removed reference to nonexistant variable `ii`
+        if(~isempty(detectSICList))
         if(~isempty(detectSICList))
             gdim = indexDict_lr(currentDetection.ttindex,1)/len; % already in terms of decimated samples
             ddist2 = abs(currentDetection.pos - getAll(detectSICList,'pos')) < 2*gdim;
