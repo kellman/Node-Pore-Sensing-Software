@@ -36,7 +36,7 @@ GeoIndex = 3;
 filename = [Geometry '_colloidmix_newprotein_42116_1PSI_output'];
 infile = [filepath filename '.mat'];
 load(infile);
-load(['../Results/thrlist_real.mat']);
+load(['../Processing/thrlist_real.mat']);
 
 % temporary
 M = 15;
